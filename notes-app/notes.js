@@ -12,14 +12,14 @@ const addNote = function (title, body) {
   })
 
   if (duplicateNotes.length === 0){
-    console.log('new note added');
+    console.log(chalk.green.bold.inverse('new note added'));
     notes.push({
       title: title,
       body: body
     });
     saveNotes(notes);
   } else {
-    console.log('note title taken!');
+    console.log(chalk.red.bold.inverse('note title taken!'));
   }
 }
 
