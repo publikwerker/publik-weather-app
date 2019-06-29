@@ -1,4 +1,5 @@
 const fs = require('fs');
+const chalk = require('chalk');
 
 function getNotes(){
   return ("Your notes...");
@@ -24,12 +25,14 @@ const addNote = function (title, body) {
 
 const removeNote = function (title){
   let noteArray = loadNotes();
-  console.log(noteArray);
   const newArray = noteArray.filter((note)=>{
     return note.title !== title;
   });
-  console.log(newArray);
-  console.log(`Remove note titled ${title}`);
+  if (noteArray.length === newArray.length){
+    console.log(chalk.red.inverse.bold(`No note found!`));
+  } else {
+    console.log(chalk.green.inverse.bold(`Note titled ${title} removed!`));
+  }
   saveNotes(newArray);
 }
 
