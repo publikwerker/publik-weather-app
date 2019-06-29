@@ -7,10 +7,8 @@
 // 3. Test your work by running the script
 
 const tasks = {
-  getTasksToDo: function(){
-    return tasks.tasks.filter((task)=>{
-      return task.completed == false;
-    })
+  getTasksToDo(){
+    return tasks.tasks.filter((task)=> task.completed === false)
   },
   tasks: [{
       text: 'Grocery shopping',
