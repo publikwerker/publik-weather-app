@@ -49,7 +49,8 @@ yargs.command({
   command: 'list',
   describe: 'List notes',
   handler(){
-    console.log('Listing Notes');
+    console.log(chalk.yellow('Listing Notes'));
+    notes.listNotes();
   }
 })
 
@@ -57,8 +58,16 @@ yargs.command({
 yargs.command({
   command: 'read',
   describe: 'Read notes',
-  handler(){
+  builder: {
+    title: {
+      describe: 'Note title',
+      demandOption: true,
+      type: 'string'
+    }
+  },
+  handler(argv){
     console.log('Reading notes');
+    notes.readNote(argv.title);
   }
 })
 
