@@ -17,33 +17,54 @@ hbs.registerPartials(partialsPath);
 // static directory to index.html
 app.use(express.static(publicDirPath));
 
-
+// home page
 app.get('', (req, res) => {
   res.render('index', {
     title: "Weather App",
-    name: "Jason Hoffman",
+    name: 'Publikwerker'
   });
 });
 
+// about page
 app.get('/about', (req, res) => {
   res.render('about', {
     title: 'About',
-    name: 'Jason Hoffman'
+    name: 'Publikwerker'
   });
 });
 
+// help page
 app.get('/help', (req, res) => {
   res.render('help', {
     title: 'Help',
-    name: 'Jason Hoffman',
-    message: 'We are here to help.'
+    message: 'We are here to help.',
+    name: 'Publikwerker'
   });
 });
 
+// weather page
 app.get('/weather', (req, res) => {
   res.send({
     location:'Portland',
     forecast:'Sunny through the day.'
+  });
+});
+
+// help 404 page
+app.get('/help/*', (req, res) => {
+  res.render('404', {
+    title: 'Help',
+    error: 'Help article not found',
+    name: 'Publikwerker'
+  });
+});
+
+// 404 page
+app.get('*', (req, res) => {
+  res.render('404', {
+    title: 'My 404 page',
+    error: 'Page not found!',
+    name: 'Publikwerker'
   });
 });
 
