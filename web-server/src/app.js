@@ -1,26 +1,43 @@
+const path = require('path');
 const chalk = require('chalk');
 const express = require('express');
+
+console.log(__dirname);
+console.log(path.join(__dirname, '../public'));
+const publicDirPath = path.join(__dirname, '../public')
 const app = express();
 
-app.get('', (req, res) => {
-  res.send('Hello express!');
-});
+//sets
+app.set('view engine', 'hbs');
+// static directory to index.html
+app.use(express.static(publicDirPath));
 
-app.get('/help', (req, res) => {
-  res.send('Help page');
+
+app.get('', (req, res) => {
+  res.render('index', {
+    title: "Weather App",
+    name: "Jason Hoffman",
+  });
 });
 
 app.get('/about', (req, res) => {
-  res.send(`About page`);
+  res.render('about', {
+    title: 'About',
+  });
+});
+
+app.get('/help', (req, res) => {
+  res.render('help', {
+    message: 'We are here to help.'
+  });
 });
 
 app.get('/weather', (req, res) => {
-  res.send(`Weather page`);
+  res.send({
+    location:'Portland',
+    forecast:'Sunny through the day.'
+  });
 });
-
-//app.com
-//app.com/help
-//app.com/about
 
 const PORT = 3000;
 app.listen(PORT, () => {
