@@ -1,14 +1,19 @@
 const path = require('path');
 const chalk = require('chalk');
 const express = require('express');
+const hbs = require('hbs');
 
-console.log(__dirname);
-console.log(path.join(__dirname, '../public'));
-const publicDirPath = path.join(__dirname, '../public')
+// Define paths for Express config
+const publicDirPath = path.join(__dirname, '../public');
+const viewsPath = path.join(__dirname, '../templates/views');
+const partialsPath = path.join(__dirname, '../templates/partials');
 const app = express();
 
-//sets
+//sets handlebars engine and views config
 app.set('view engine', 'hbs');
+app.set('views', viewsPath);
+hbs.registerPartials(partialsPath);
+
 // static directory to index.html
 app.use(express.static(publicDirPath));
 
@@ -23,11 +28,14 @@ app.get('', (req, res) => {
 app.get('/about', (req, res) => {
   res.render('about', {
     title: 'About',
+    name: 'Jason Hoffman'
   });
 });
 
 app.get('/help', (req, res) => {
   res.render('help', {
+    title: 'Help',
+    name: 'Jason Hoffman',
     message: 'We are here to help.'
   });
 });
