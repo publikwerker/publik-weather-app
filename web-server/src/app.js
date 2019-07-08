@@ -44,9 +44,27 @@ app.get('/help', (req, res) => {
 
 // weather page
 app.get('/weather', (req, res) => {
+  if (!req.query.address) {
+    return res.send({
+      error: `An address must be provided.`
+    })
+  }
   res.send({
     location:'Portland',
-    forecast:'Sunny through the day.'
+    forecast:'Sunny through the day.',
+    address: req.query.address
+  });
+});
+
+app.get('/products', (req, res) => {
+  if (!req.query.search) {
+    return res.send({
+      error: 'You must provide a search term.'
+    });
+  };
+  console.log(req.query.wet)
+    res.send({
+        products: []
   });
 });
 
@@ -70,5 +88,5 @@ app.get('*', (req, res) => {
 
 const PORT = 3000;
 app.listen(PORT, () => {
-  console.log(chalk.blue.inverse(`Server is running in port ${PORT}.`));
+  console.log(chalk.blue.inverse(`Server is running on port ${PORT}.`));
 })
