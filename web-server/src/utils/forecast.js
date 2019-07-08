@@ -14,8 +14,13 @@ const forecast = (data, callback) => {
       const {temperature} = body.currently;
       const precip = body.currently.precipProbability;
       const {summary} = body.daily.data[0];
-      callback(undefined,(`The temperature in ${place}, is ${temperature} degrees Fahrenheit, with ${precip}% chance of rain. The forecast calls for ${summary.toLowerCase()}`)
-      );
+      callback(undefined, {
+        temperature,
+        precip,
+        summary,
+        place
+      });
+      //callback(undefined,(`The temperature in ${place}, is ${temperature} degrees Fahrenheit, with ${precip}% chance of rain. The forecast calls for ${summary.toLowerCase()}`)
     };
   });
 };
