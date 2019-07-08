@@ -7,9 +7,9 @@ const forecast = (data, callback) => {
 
   request({url, json: true}, (err, {body}) => {
     if (err){
-      callback(chalk.red.inverse.bold(`Unable to access network connection`));
+      callback(`Unable to access network connection`);
     } else if (body.error) {
-      callback(chalk.red.inverse.bold(`Unable to find location`));
+      callback(`Unable to find location`);
     } else {
       const {temperature} = body.currently;
       const precip = body.currently.precipProbability;

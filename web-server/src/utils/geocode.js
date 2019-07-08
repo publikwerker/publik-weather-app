@@ -5,9 +5,9 @@ const geoCode = (address, callback) => {
 
   request({url, json:true}, (err, {body}) => {
     if (err) {
-      return callback(chalk.red.inverse.bold(`Unable to contact GEOCODING services`));
+      return callback(`Unable to contact GEOCODING services`);
     } else if (body.features.length === 0) {
-      return callback(chalk.red.inverse.bold(`Unable to find location. Try another search`));
+      return callback(`Unable to find location. Try another search`);
     } else {
       return callback(undefined, {
         place: body.features[0].place_name,

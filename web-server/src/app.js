@@ -55,7 +55,7 @@ app.get('/weather', (req, res) => {
     if (!req.query.address){
       return console.log(chalk.blue.bold.inverse(`Please provide city.`));
     } else if (error){
-      return console.log(chalk.red.inverse.bold('Error'), error);
+      return res.send({error});
     }
     forecast(data, (error, forecastData) => {
       if (error) {
