@@ -2,6 +2,8 @@ const path = require('path');
 const chalk = require('chalk');
 const express = require('express');
 const hbs = require('hbs');
+const geoCode = require('./utils/geocode.js');
+const forecast = require('./utils/forecast.js');
 
 // Define paths for Express config
 const publicDirPath = path.join(__dirname, '../public');
@@ -48,12 +50,20 @@ app.get('/weather', (req, res) => {
     return res.send({
       error: `An address must be provided.`
     })
-  }
-  res.send({
-    location:'Portland',
-    forecast:'Sunny through the day.',
-    address: req.query.address
-  });
+  };
+  geoCode(req.query.address, (error, data) => {
+    if (!req.query.address){
+      return console.log(chalk.blue.bold.inverse(`Please provide city.`));
+    } else if (error){
+      return console.log(chalk.red.inverse.bold('Error'), error);
+    }
+    forecast(data, (error, forecastData) => {
+      if (error) {
+        return console.log(chalk.red.inverse.bold('Error'), error);
+      }
+      res.send(forecastData);
+    })
+  })
 });
 
 app.get('/products', (req, res) => {
