@@ -17,8 +17,11 @@ weatherForm.addEventListener('submit', (e) => {
       if(data.error){
         messageOne.textContent = data.error;
       } else {
+        const retSummary = data.summary;
+        const retTemp = data.temperature;
+        const retPrecip = data.precip;
         messageOne.textContent = data.place;
-        messageTwo.textContent = data.summary;
+        messageTwo.textContent = (`Currently ${retTemp} degrees with ${retPrecip}% chance of rain. Forecast calls for ${retSummary.toLowerCase()}`);
       };
     });
   });
