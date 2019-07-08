@@ -59,7 +59,7 @@ app.get('/weather', (req, res) => {
     }
     forecast(data, (error, forecastData) => {
       if (error) {
-        return console.log(chalk.red.inverse.bold('Error'), error);
+        return res.send({error});
       }
       res.send(forecastData);
     })

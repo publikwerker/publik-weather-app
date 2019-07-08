@@ -20,7 +20,6 @@ const forecast = (data, callback) => {
         summary,
         place
       });
-      //callback(undefined,(`The temperature in ${place}, is ${temperature} degrees Fahrenheit, with ${precip}% chance of rain. The forecast calls for ${summary.toLowerCase()}`)
     };
   });
 };
