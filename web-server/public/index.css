@@ -13,6 +13,14 @@ body {
   min-height: 100vh;
 }
 
+button {
+  cursor: pointer;
+  border: 1px solid #888888;
+  background: #888888;
+  color: white;
+  padding: 8px;
+}
+
 footer {
   color: #888888;border-top: 1px solid #eeeeee;
   margin-top: 16px;
@@ -33,6 +41,11 @@ header a {
 h1 {
   font-size: 64px;
   margin-bottom: 16px;
+}
+
+input {
+  border: 1px solid #cccccc;
+  padding: 8px;
 }
 
 .main-content {
