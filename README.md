@@ -1,1 +1,2 @@
 # This is course work for Udemy course to keep some tone in my NodeJS muscles.
+This was my first use of handlebars with templates, partials, and views. They seem kinda clunky, especially compared to React. It was nice to build something with just JS and Node, though.
