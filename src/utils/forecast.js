@@ -13,12 +13,14 @@ const forecast = (data, callback) => {
     } else {
       const {temperature} = body.currently;
       const precip = body.currently.precipProbability;
-      const {summary} = body.daily.data[0];
+      const {summary} = body.daily;
+      const highTemp = body.daily.data[0].temperatureMax;
       callback(undefined, {
         temperature,
         precip,
         summary,
-        place
+        place,
+        highTemp
       });
     };
   });
