@@ -1,9 +1,9 @@
 const request = require('request');
-const chalk = require('chalk');
+const darkKey = process.env.DARKSKYKEY;
 
 const forecast = (data, callback) => {
   const {lat,long,place} = data;
-  const url =`https://api.darksky.net/forecast/479e3e61b28a471af898ef5eccc876f2/${lat},${long}`;
+  const url =`https://api.darksky.net/forecast/${darkKey}/${lat},${long}`;
 
   request({url, json: true}, (err, {body}) => {
     if (err){
