@@ -1,7 +1,7 @@
 const request = require('request');
-const chalk = require('chalk');
+const geoToken = process.env.GEOTOKEN;
 const geoCode = (address, callback) => {
-  const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(address)}.json?access_token=pk.eyJ1IjoicHVibGlrd2Vya2VyIiwiYSI6ImNqeGplMnd2bjB6bWozenFua3JxMXNvcnAifQ.jvtutPYzNjoYyzdK9VQnVA&?limit=1`;
+  const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(address)}.json?access_token=${geoToken}&?limit=1`;
 
   request({url, json:true}, (err, {body}) => {
     if (err) {
